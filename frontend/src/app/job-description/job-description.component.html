@@ -1,0 +1,73 @@
+<div class="container mt-5">
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+  <!-- Create Section -->
+  <div class="card mb-4">
+    <div class="card-header" style="background-color: #00008b; color: #ffffff;">Create Job Posting</div>
+    <div class="card-body">
+      <form>
+        <input type="text" class="form-control mb-2" placeholder="Title" [(ngModel)]="newJob.title" name="title">
+        <input type="text" class="form-control mb-2" placeholder="Company" [(ngModel)]="newJob.company" name="company">
+        <textarea class="form-control mb-2" placeholder="Description" [(ngModel)]="newJob.description" name="description"></textarea>
+        <input type="text" class="form-control mb-2" placeholder="Requisition ID" [(ngModel)]="newJob.details.requisitionId" name="requisitionId">
+        <input type="text" class="form-control mb-2" placeholder="Remote Type" [(ngModel)]="newJob.details.remoteType" name="remoteType">
+        <input type="text" class="form-control mb-2" placeholder="Location" [(ngModel)]="newJob.details.location" name="location">
+        <input type="date" class="form-control mb-2" placeholder="Posting Date" [(ngModel)]="newJob.details.postingDate" name="postingDate">
+        <input type="text" class="form-control mb-2" placeholder="Job Family" [(ngModel)]="newJob.details.jobFamily" name="jobFamily">
+        <input type="text" class="form-control mb-2" placeholder="Time Type" [(ngModel)]="newJob.details.timeType" name="timeType">
+        <input type="text" class="form-control mb-2" placeholder="Job Type" [(ngModel)]="newJob.details.jobType" name="jobType">
+        <input type="text" class="form-control mb-2" placeholder="Supervisory Org" [(ngModel)]="newJob.details.supervisoryOrg" name="supervisoryOrg">
+        <button class="btn btn-primary" (click)="createJob()">Create</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- List Section -->
+  <div class="card mb-4">
+    <div class="card-header" style="background-color: #00008b; color: #ffffff;">List of Job Postings</div>
+    <div class="card-body">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let job of jobPostings">
+          {{ job.title }} - {{ job.company }} (ID: {{ job._id }})
+          <button class="btn btn-sm btn-info ml-2" (click)="selectForUpdate(job)">Edit</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Update Section -->
+  <div class="card mb-4">
+    <div class="card-header" style="background-color: #00008b; color: #ffffff;">Update Job Posting</div>
+    <div class="card-body">
+      <form *ngIf="updateJob._id">
+        <input type="text" class="form-control mb-2" placeholder="Title" [(ngModel)]="updateJob.title" name="updateTitle">
+        <input type="text" class="form-control mb-2" placeholder="Company" [(ngModel)]="updateJob.company" name="updateCompany">
+        <textarea class="form-control mb-2" placeholder="Description" [(ngModel)]="updateJob.description" name="updateDescription"></textarea>
+        <input type="text" class="form-control mb-2" placeholder="Requisition ID" [(ngModel)]="updateJob.details.requisitionId" name="updateRequisitionId">
+        <input type="text" class="form-control mb-2" placeholder="Remote Type" [(ngModel)]="updateJob.details.remoteType" name="updateRemoteType">
+        <input type="text" class="form-control mb-2" placeholder="Location" [(ngModel)]="updateJob.details.location" name="updateLocation">
+        <input type="date" class="form-control mb-2" placeholder="Posting Date" [(ngModel)]="updateJob.details.postingDate" name="updatePostingDate">
+        <input type="text" class="form-control mb-2" placeholder="Job Family" [(ngModel)]="updateJob.details.jobFamily" name="updateJobFamily">
+        <input type="text" class="form-control mb-2" placeholder="Time Type" [(ngModel)]="updateJob.details.timeType" name="updateTimeType">
+        <input type="text" class="form-control mb-2" placeholder="Job Type" [(ngModel)]="updateJob.details.jobType" name="updateJobType">
+        <input type="text" class="form-control mb-2" placeholder="Supervisory Org" [(ngModel)]="updateJob.details.supervisoryOrg" name="updateSupervisoryOrg">
+        <button class="btn btn-primary" (click)="updateJobFn()">Update</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete Section -->
+  <div class="card">
+    <div class="card-header" style="background-color: #00008b; color: #ffffff;">Delete Job Posting</div>
+    <div class="card-body">
+      <input type="text" class="form-control mb-2" placeholder="Job ID" [(ngModel)]="deleteId" name="deleteId">
+      <button class="btn btn-danger" (click)="deleteJob()">Delete</button>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="mt-3">
+    <button class="btn btn-primary" routerLink="/dashboard">Back to Dashboard</button>
+  </div>
+</div>

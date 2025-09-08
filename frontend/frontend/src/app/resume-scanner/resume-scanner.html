@@ -1,0 +1,37 @@
+<header class="navbar">
+  <div class="nav-left">
+    <button routerLink="/dashboard">Dashboard</button>
+    <button routerLink="/dashboard/job-postings">Create Job Postings</button>
+    <button routerLink="/dashboard/recommendations">View Recommendations</button>
+  </div>
+  <div class="nav-right">
+    <button (click)="logout()">Logout</button>
+  </div>
+</header>
+
+<div class="container">
+  <h2>Resume Analyser</h2>
+  <p>
+    Upload resumes to quickly evaluate candidate fit, skills, and relevance for
+    your job roles.
+  </p>
+
+  <!-- Upload Area -->
+  <div
+    class="upload-box"
+    (drop)="onFileDrop($event)"
+    (dragover)="onDragOver($event)"
+  >
+    <p>Drag & Drop Resume here OR</p>
+    <input type="file" (change)="onFileSelect($event)" />
+  </div>
+
+  <button (click)="analyseResume()" [disabled]="!uploadedFileId">
+    AI Score
+  </button>
+
+  <div *ngIf="analysis">
+    <h3>Analysis Result</h3>
+    <pre>{{ analysis | json }}</pre>
+  </div>
+</div>

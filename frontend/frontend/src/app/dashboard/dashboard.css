@@ -1,0 +1,41 @@
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #00008b;
+    padding: 15px 30px;
+}
+
+.nav-left button,
+.nav-right button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    margin: 0 10px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.nav-left button:hover,
+.nav-right button:hover {
+    text-decoration: underline;
+}
+
+/* Dashboard Content */
+.dashboard-content {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.dashboard-content h2 {
+    color: #00008b;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.dashboard-content p {
+    color: #333;
+    font-size: 16px;
+}

@@ -1,0 +1,44 @@
+<header class="navbar">
+    <div class="nav-left">
+        <button routerLink="/dashboard">Dashboard</button>
+        <button routerLink="/dashboard/recommendations">View Recommendations</button>
+        <button routerLink="/dashboard/resume-scanner">Resume Scanner</button>
+    </div>
+    <div class="nav-right">
+        <button (click)="logout()">Logout</button>
+    </div>
+</header>
+
+<div class="container">
+    <h2>Manage Job Postings</h2>
+
+    <!-- Create New Job Posting -->
+    <h3>Create New Job Posting</h3>
+    <form (ngSubmit)="addJob()">
+        <input type="text" placeholder="Job Title" [(ngModel)]="newJob.title" name="title" required />
+        <textarea placeholder="Job Description" [(ngModel)]="newJob.description" name="description" required></textarea>
+        <button type="submit">Add Job</button>
+    </form>
+
+    <!-- Existing Job Postings -->
+    <h3>Existing Job Postings</h3>
+    <div *ngFor="let job of jobs" class="job-card">
+        <h4>{{ job.title }}</h4>
+        <p>
+            {{ job.description | slice: 0: 150 }}
+            <span *ngIf="job.description.length > 150">
+                ...
+                <button class="read-more" (click)="toggleReadMore(job)">
+                    Read More
+                </button>
+            </span>
+        </p>
+        <div *ngIf="job.showFull" class="full-description">
+            <p>{{ job.description }}</p>
+        </div>
+        <div class="actions">
+            <button (click)="editJob(job)">Edit</button>
+            <button (click)="deleteJob(job._id)">Delete</button>
+        </div>
+    </div>
+</div>

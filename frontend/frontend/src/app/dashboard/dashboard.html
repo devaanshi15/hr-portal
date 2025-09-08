@@ -1,0 +1,19 @@
+<div class="container">
+  <p>You are successfully logged in.</p>
+</div>
+
+<header class="navbar">
+  <div class="nav-left">
+    <button routerLink="/dashboard/create-job">Create Job Postings</button>
+    <button routerLink="/dashboard/recommendations">View Recommendations</button>
+    <button routerLink="/dashboard/resume-scanner">Resume Scanner</button>
+  </div>
+  <div class="nav-right">
+    <button (click)="logout()">Logout</button>
+  </div>
+</header>
+
+<div class="dashboard-content">
+  <h2>Welcome to the Dashboard</h2>
+  <p>Manage job postings, check candidate recommendations, and scan resumes.</p>
+</div>

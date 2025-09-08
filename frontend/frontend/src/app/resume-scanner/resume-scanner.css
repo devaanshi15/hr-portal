@@ -1,0 +1,30 @@
+.container {
+    padding: 20px;
+    color: #00008b;
+}
+
+.upload-box {
+    border: 2px dashed #00008b;
+    padding: 30px;
+    margin: 20px 0;
+    text-align: center;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.upload-box:hover {
+    background-color: #b3d4fc;
+}
+
+button {
+    background-color: #00008b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: gray;
+}

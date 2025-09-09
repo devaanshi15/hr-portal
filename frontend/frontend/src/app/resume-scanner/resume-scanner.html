@@ -1,6 +1,84 @@
 <header class="navbar">
   <div class="nav-left">
     <button routerLink="/dashboard">Dashboard</button>
+    <button routerLink="/dashboard/create-job">Create Job Postings</button>
+    <button routerLink="/dashboard/recommendations">View Recommendations</button>
+    <!-- <button class="active">Resume Scanner</button> -->
+  </div>
+  <div class="nav-right">
+    <button (click)="logout()">Logout</button>
+  </div>
+</header>
+
+<div class="container">
+  <h2>Resume Analyser</h2>
+  <p class="lead">
+    Select a job description, upload a candidate’s PDF resume, then click <strong>AI Score</strong> to get a relevance score,
+    key technologies, category, and a similarity score against the JD.
+  </p>
+
+  <div class="row">
+    <div class="field">
+      <label>Job Description</label>
+      <select [(ngModel)]="selectedJdId">
+        <option value="" disabled selected>Select JD...</option>
+        <option *ngFor="let j of jobs" [value]="j._id">{{ j.title }}</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Candidate Name (optional)</label>
+      <input type="text" [(ngModel)]="candidateName" placeholder="e.g., Priya Sharma">
+    </div>
+  </div>
+
+  <!-- Upload -->
+  <div class="upload"
+       [class.dragging]="isDragging"
+       (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (drop)="onDrop($event)">
+    <p>Drag & Drop PDF here or</p>
+    <input type="file" accept="application/pdf" (change)="onFileSelect($event)">
+    <div *ngIf="uploadedFileName" class="file-chip">{{ uploadedFileName }}</div>
+  </div>
+
+  <button class="primary" (click)="analyse()"
+          [disabled]="!uploadedFileId">AI Score</button>
+  <button class="secondary" (click)="exportCsv()" [disabled]="!selectedJdId">Export CSV</button>
+
+  <div *ngIf="analysis" class="result">
+    <h3>Analysis Result</h3>
+    <div class="grid">
+      <div>
+        <div class="label">Category</div>
+        <div class="value">{{ analysis.category }}</div>
+      </div>
+      <div>
+        <div class="label">Relevance (0–100)</div>
+        <div class="value">{{ analysis.relevanceScore }}</div>
+      </div>
+      <div>
+        <div class="label">Similarity (0–1)</div>
+        <div class="value">{{ analysis.similarityScore }}</div>
+      </div>
+      <div>
+        <div class="label">Technologies</div>
+        <div class="value">{{ (analysis.technologies || []).join(', ') }}</div>
+      </div>
+    </div>
+    <div class="comments">
+      <div class="label">Comments</div>
+      <p>{{ analysis.comments }}</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- <header class="navbar">
+  <div class="nav-left">
+    <button routerLink="/dashboard">Dashboard</button>
     <button routerLink="/dashboard/job-postings">Create Job Postings</button>
     <button routerLink="/dashboard/recommendations">View Recommendations</button>
   </div>
@@ -16,7 +94,6 @@
     your job roles.
   </p>
 
-  <!-- Upload Area -->
   <div
     class="upload-box"
     (drop)="onFileDrop($event)"
@@ -34,4 +111,4 @@
     <h3>Analysis Result</h3>
     <pre>{{ analysis | json }}</pre>
   </div>
-</div>
+</div> -->

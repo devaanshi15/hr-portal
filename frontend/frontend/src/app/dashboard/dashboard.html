@@ -1,4 +1,49 @@
-<div class="container">
+<header class="navbar">
+  <div class="nav-left">
+    <button routerLink="/dashboard/create-job">Create Job Postings</button>
+    <button routerLink="/dashboard/recommendations">View Recommendations</button>
+    <button routerLink="/dashboard/resume-scanner">Resume Scanner</button>
+  </div>
+  <div class="nav-right">
+    <div class="user-menu" (click)="toggleUserMenu()">
+      <img src="assets/user-icon.png" alt="User" class="user-icon">
+      <div *ngIf="showUserMenu" class="dropdown">
+        <p><strong>{{ userInfo.username }}</strong></p>
+        <p>{{ userInfo.email }}</p>
+        <hr>
+        <button (click)="goToSettings()">Settings</button>
+        <button (click)="logout()">Logout</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="dashboard-content">
+  <h2>Welcome to the Dashboard</h2>
+  <p>Manage job postings, check candidate recommendations, and scan resumes.</p>
+
+  <div class="cards-container">
+    <div class="card">
+      <h3>{{ stats.jobs }}</h3>
+      <p>Job Descriptions Created</p>
+    </div>
+    <div class="card">
+      <h3>{{ stats.resumes }}</h3>
+      <p>Resumes Uploaded</p>
+    </div>
+    <div class="card">
+      <h3>{{ stats.candidates }}</h3>
+      <p>Candidates Processed</p>
+    </div>
+    <div class="card">
+      <h3>{{ stats.jobcodeWise }}</h3>
+      <p>Jobcode-wise Resumes</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="container">
   <p>You are successfully logged in.</p>
 </div>
 
@@ -16,4 +61,4 @@
 <div class="dashboard-content">
   <h2>Welcome to the Dashboard</h2>
   <p>Manage job postings, check candidate recommendations, and scan resumes.</p>
-</div>
+</div> -->

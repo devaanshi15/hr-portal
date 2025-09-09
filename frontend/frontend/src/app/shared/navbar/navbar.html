@@ -1,0 +1,16 @@
+<div style="background: white; width: 100%; display: flex; justify-content: center; align-items: center; padding: 20px 0;">
+<img src="assets/mmc-logo-v3-transparent-background-blue-letters.svg" alt="Company Logo" style="height: 80px;">
+</div>
+
+<header class="navbar">
+    
+  <div class="nav-left">
+    <button routerLink="/dashboard">Dashboard</button>
+    <button routerLink="/dashboard/create-job">Create Job Postings</button>
+    <button routerLink="/dashboard/best-fits">Best Fit Candidates</button>
+    <button routerLink="/dashboard/resume-scanner">Resume Scanner</button>
+  </div>
+  <div class="nav-right">
+    <button (click)="logout()">Logout</button>
+  </div>
+</header>

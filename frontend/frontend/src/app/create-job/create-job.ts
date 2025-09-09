@@ -69,11 +69,12 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
+import { NavbarComponent } from '../shared/navbar/navbar';
 
 @Component({
   selector: 'app-create-job',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterLink, RouterModule],
+  imports: [FormsModule, CommonModule, RouterLink, RouterModule, NavbarComponent],
   templateUrl: './create-job.html',
   styleUrls: ['./create-job.css']
 })

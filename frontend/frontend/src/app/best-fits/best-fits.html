@@ -1,0 +1,62 @@
+<!-- <header class="navbar">
+    <div class="nav-left">
+        <button routerLink="/dashboard">Dashboard</button>
+        <button routerLink="/dashboard/recommendations">Recommendations</button>
+        <button routerLink="/dashboard/best-fits" class="active">Best Fits</button>
+    </div>
+    <div class="nav-right">
+        <button (click)="logout()">Logout</button>
+    </div>
+</header> -->
+<app-navbar></app-navbar>
+
+
+<div class="container">
+    <h2>Top AI-Matched Candidates</h2>
+
+    <!-- JD Dropdown -->
+    <label for="jdSelect">Select Job Description:</label>
+    <select id="jdSelect" [(ngModel)]="selectedJD" (change)="onJDChange()">
+        <option *ngFor="let jd of jobDescriptions" [value]="jd._id">
+            {{ jd.title }}
+        </option>
+    </select>
+    <a *ngIf="selectedJD" [href]="'/jd/' + selectedJD" target="_blank" class="read-more-link">
+        About JD (Read More)
+    </a>
+
+    <!-- Candidate requirements -->
+    <div *ngIf="candidates.length > 0" class="candidate-section">
+        <h3>Suitable Candidates Found: {{ candidates.length }}</h3>
+
+        <label for="numReq">Number of Candidates Required:</label>
+        <input id="numReq" type="number" [(ngModel)]="numRequired" min="1">
+
+        <button (click)="getBestFits()">Best Fits</button>
+    </div>
+
+    <!-- Table for best fits -->
+    <div *ngIf="bestFits.length > 0" class="table-container">
+        <h3>Best Fit Candidates</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Candidate Name</th>
+                    <th>AI Score</th>
+                    <th>Resume</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let fit of bestFits; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ fit.name }}</td>
+                    <td>{{ fit.aiScore }}</td>
+                    <td>
+                        <a [href]="fit.resumeLink" target="_blank">View Resume</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

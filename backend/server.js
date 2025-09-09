@@ -15,6 +15,7 @@ app.use('/api/jobs', require('./routes/jobs'));
 app.use('/api/resume', require('./routes/resume'));
 app.use('/api/recommendations', require('./routes/recommendations'));
 app.use("/api/dashboard", require("./routes/dashboard"));
+app.use('/api/bestfits', require('./routes/bestfits'));
 
 mongoose.connect(process.env.MONGO_URI, {}).then(()=>console.log('MongoDB Connected'));
 

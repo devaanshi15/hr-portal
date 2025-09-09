@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterModule } from '@angular/router';
+import { NavbarComponent } from '../shared/navbar/navbar';
 
 @Component({
   selector: 'app-resume-scanner',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, RouterModule],
+  imports: [CommonModule, FormsModule, RouterLink, RouterModule, NavbarComponent],
   templateUrl: './resume-scanner.html',
   styleUrls: ['./resume-scanner.css']
 })
